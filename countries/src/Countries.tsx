@@ -26,12 +26,6 @@ const Countries: React.FC = () => {
     };
     name: {
       common: string;
-      nativeName: {
-        eng: {
-          common: string;
-          official: string;
-        };
-      };
       official: string;
     };
   }
@@ -45,7 +39,7 @@ const Countries: React.FC = () => {
       {data ? (
         <ul>
           {data.map((item: any) => (
-            <li key={item.name.common}>{item.name.common}</li>
+            <li key={item.name.common}>{item.name.common}<img src={item.flags.png}></img></li>
           ))}
         </ul>
       ) : (
