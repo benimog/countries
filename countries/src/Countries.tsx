@@ -39,7 +39,10 @@ const Countries: React.FC = () => {
       {data ? (
         <ul>
           {data.map((item: any) => (
-            <li key={item.name.common}>{item.name.common}<img src={item.flags.png} alt={item.name.common}></img></li>
+            <li key={item.name.common}>
+              {item.name.common}
+              <img src={item.flags.png} alt={item.name.common}></img>
+            </li>
           ))}
         </ul>
       ) : (
