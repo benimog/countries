@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 import PopdownMenu from "./components/PopdownMenu";
-import Countries from "./Countries";
+import Countries from "./components/Countries";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import FlagGuess from "./components/FlagGuess";
-import Page2 from "./components/Page2";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -12,12 +12,12 @@ function App() {
       <div className="top-container">
         <PopdownMenu />
       </div>
-      <header className="App-header" style={{ paddingTop: "80px" }}>
+      <header className="App-header" style={{ paddingTop: "80px"}}>
         <Router>
           <Routes>
+            <Route path="/" Component={Home} />
             <Route path="/countries" Component={Countries} />
             <Route path="/GuessTheFlag" Component={FlagGuess} />
-            <Route path="/page2" Component={Page2} />
           </Routes>
         </Router>
       </header>

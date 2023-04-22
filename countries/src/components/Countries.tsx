@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const Countries: React.FC = () => {
   const [data, setData] = useState<any>(null);
@@ -10,13 +12,14 @@ const Countries: React.FC = () => {
         const response = await axios.get(
           "https://restcountries.com/v3.1/all?fields=name,flags"
         );
-        setData(response.data);
+        setData(response.data.sort((a: { name: { common: string; }; }, b: { name: { common: any; }; }) => a.name.common.localeCompare(b.name.common)));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
   }, []);
+
   interface Country {
     flags: {
       alt: string;
@@ -28,26 +31,44 @@ const Countries: React.FC = () => {
       official: string;
     };
   }
-  if (data !== null) {
-    let myArray: Country[] = data;
-    myArray.sort((a, b) => a.name.common.localeCompare(b.name.common));
-    console.log(myArray);
-  }
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
   return (
-    <div>
-      {data ? (
-        <ul>
-          {data.map((item: any) => (
-            <li key={item.name.common}>
-              {item.name.common}
-              <img src={item.flags.png} alt={item.name.common}></img>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Loading data...</p>
-      )}
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" variant="head">Country/ region</TableCell>
+              <TableCell align="center" variant="head">Flag</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data ? (
+              data.map((item: Country) => (
+                <TableRow key={item.name.common}>
+                  <TableCell component="th" scope="row">
+                    {item.name.common}
+                  </TableCell>
+                  <TableCell>
+                    <img src={item.flags.png} alt={item.name.common} />
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell>Loading data...</TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </ThemeProvider>
   );
 };
 

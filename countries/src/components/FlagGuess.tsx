@@ -94,7 +94,7 @@ function FlagGuess() {
   return (
     <div>
       <h1>Guess the Flag</h1>
-      <p>Pick the correct country for each flag.</p>
+      <p>Pick the correct country/ region for each flag.</p>
       {randomCountry && (
         <div>
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
@@ -102,9 +102,6 @@ function FlagGuess() {
           <Stack spacing={2}>
             <Stack spacing={2} direction="row">
               {choices.map((choice) => (
-                // <button key={choice.name.common} onClick={() => handleChoice(choice)}>
-                //   {choice.name.common}
-                // </button>
                 <Button
                   variant="contained"
                   key={choice.name.common}
