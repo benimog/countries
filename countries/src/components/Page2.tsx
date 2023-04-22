@@ -1,10 +1,12 @@
-// Page2.tsx
 import React from 'react';
 
-const Page2 = () => {
-  return <div>
-        <p>Paga 2</p>
-  </div>;
-};
+function Page2() {
+  return (
+    <div>
+      <h1>Welcome to the page 2</h1>
+      <p>This is the content for the page 2</p>
+    </div>
+  );
+}
 
 export default Page2;

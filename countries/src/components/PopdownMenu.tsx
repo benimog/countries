@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, IconButton, Menu, MenuItem, Link } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Menu,
+  MenuItem,
+  Link,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const PopdownMenu = () => {
@@ -31,6 +38,11 @@ const PopdownMenu = () => {
           onClose={handleMenuClose}
         >
           <MenuItem onClick={handleMenuClose}>
+            <Link href="/countries" color="inherit">
+              Countries
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
             <Link href="/page1" color="inherit">
               Page 1
             </Link>
@@ -45,6 +57,5 @@ const PopdownMenu = () => {
     </AppBar>
   );
 };
-  
 
 export default PopdownMenu;
