@@ -17,7 +17,6 @@ const Countries: React.FC = () => {
     };
     fetchData();
   }, []);
-  //console.log(data);
   interface Country {
     flags: {
       alt: string;
