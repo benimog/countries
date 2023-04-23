@@ -16,6 +16,13 @@ function Home() {
         </Link>
         .
       </p>
+      <div className="footer">
+        <p>
+          <a href="https://erikmartinandersson.se/" target="_blank" rel="noreferrer">
+            👨‍💻
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
