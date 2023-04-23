@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route path="/" Component={Home} />
             <Route path="/countries" Component={Countries} />
-            <Route path="/GuessTheFlag" Component={FlagGuess} />
+            <Route path="/flags" Component={FlagGuess} />
           </Routes>
         </Router>
       </header>

@@ -63,7 +63,7 @@ function FlagGuess() {
 
   const getChoices = (randomIndex: number) => {
     const choices: { flags: any; name: any }[] = [];
-    while (choices.length < 4) {
+    while (choices.length < 3) {
       const randomChoiceIndex = Math.floor(Math.random() * data.length);
       if (randomChoiceIndex !== randomIndex) {
         const randomChoice = data[randomChoiceIndex];
@@ -100,7 +100,7 @@ function FlagGuess() {
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
           <div>
           <Stack spacing={2}>
-            <Stack spacing={2} direction="row">
+            <Stack spacing={2} direction="row" justifyContent="center" >
               {choices.map((choice) => (
                 <Button
                   variant="contained"

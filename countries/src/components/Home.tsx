@@ -11,7 +11,7 @@ function Home() {
           list of countries
         </Link>{" "}
         and play a{" "}
-        <Link href="/GuessTheFlag" color="inherit">
+        <Link href="/flags" color="inherit">
           flag game
         </Link>
         .
