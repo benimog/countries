@@ -12,7 +12,7 @@ function App() {
       <div className="top-container">
         <PopdownMenu />
       </div>
-      <header className="App-header" style={{ paddingTop: "80px"}}>
+      <div className="content">
         <Router>
           <Routes>
             <Route path="/" Component={Home} />
@@ -20,7 +20,7 @@ function App() {
             <Route path="/flags" Component={FlagGuess} />
           </Routes>
         </Router>
-      </header>
+      </div>
     </div>
   );
 }

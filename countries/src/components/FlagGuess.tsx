@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 
 type Country = {
   flags: {
@@ -19,18 +15,6 @@ type Country = {
     nativeName: Record<string, any>;
   };
 };
-
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
-});
 
 function FlagGuess() {
   const [data, setData] = useState<Country[]>([]);
@@ -104,7 +88,7 @@ function FlagGuess() {
     setCorrectPicks(0);
     setIncorrectPicks(0);
   };
-  
+
   return (
     <div>
       <h1>Guess the Flag</h1>
@@ -113,7 +97,7 @@ function FlagGuess() {
         <div>
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
           <div>
-            <Stack spacing={2} sx={{ marginTop: '1rem' }} >
+            <Stack spacing={2} sx={{ marginTop: "1rem" }}>
               <Stack spacing={2} direction="row" justifyContent="center">
                 <Stack spacing={2} direction="column">
                   {choices.slice(0, 2).map((choice) => (
