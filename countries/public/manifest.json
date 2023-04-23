@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Flaggquiz",
+  "name": "Flaggquiz.se - Kan du dina flaggor?",
   "icons": [
     {
       "src": "favicon.ico",
