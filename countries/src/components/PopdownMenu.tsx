@@ -44,7 +44,7 @@ const PopdownMenu = () => {
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
             <Link href="/countries" color="inherit">
-              Länder
+              Länder & regioner
             </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
