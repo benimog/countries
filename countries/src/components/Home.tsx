@@ -4,7 +4,7 @@ import React from "react";
 function Home() {
   return (
     <div>
-      <h1>Welcome to the Homepage</h1>
+      <h1>Welcome to flaggquiz.se</h1>
       <p>
         Here you can see a{" "}
         <Link href="/countries" color="inherit">
