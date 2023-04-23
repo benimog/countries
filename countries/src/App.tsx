@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PopdownMenu from "./components/PopdownMenu";
 import Countries from "./components/Countries";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import FlagGuess from "./components/FlagGuess";
 import Home from "./components/Home";
 
@@ -20,6 +20,8 @@ function App() {
             <Route path="/flags" Component={FlagGuess} />
           </Routes>
         </Router>
+      </div>
+      <div className="bottom-container">
       </div>
     </div>
   );

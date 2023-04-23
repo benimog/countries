@@ -80,6 +80,7 @@ function FlagGuess() {
       setCorrectPicks((prev) => prev + 1);
     } else {
       setIncorrectPicks((prev) => prev + 1);
+      alert(`Incorrect! The correct answer is ${randomCountry?.name.common}`);
     }
     getRandomCountry();
   };
