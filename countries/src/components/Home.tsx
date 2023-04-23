@@ -4,15 +4,15 @@ import React from "react";
 function Home() {
   return (
     <div>
-      <h1>Welcome to flaggquiz.se</h1>
+      <h1>Välkommen till flaggquiz.se</h1>
       <p>
-        Here you can see a{" "}
+        Här går det att se en{" "}
         <Link href="/countries" color="inherit">
-          list of countries
+          lista över länder
         </Link>{" "}
-        and play a{" "}
+        och spela ett{" "}
         <Link href="/flags" color="inherit">
-          flag game
+          flaggquiz
         </Link>
         .
       </p>

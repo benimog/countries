@@ -3,24 +3,29 @@ import axios from "axios";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-type Country = {
+interface Country {
   flags: {
+    alt: string;
     png: string;
     svg: string;
-    alt: string;
   };
   name: {
     common: string;
     official: string;
-    nativeName: Record<string, any>;
   };
-};
+  translations: {
+    swe: {
+      official: string;
+      common: string;
+    };
+  };
+}
 
 function FlagGuess() {
-  const [data, setData] = useState<Country[]>([]);
-  const [countries, setCountries] = useState<Country[]>([]);
-  const [randomCountry, setRandomCountry] = useState<Country | null>(null);
-  const [choices, setChoices] = useState<Country[]>([]);
+  const [data, setData] = useState<any[]>([]);
+  const [countries, setCountries] = useState<any[]>([]);
+  const [randomCountry, setRandomCountry] = useState<any | null>(null);
+  const [choices, setChoices] = useState<any[]>([]);
   const [correctPicks, setCorrectPicks] = useState<number>(0);
   const [incorrectPicks, setIncorrectPicks] = useState<number>(0);
 
@@ -28,11 +33,19 @@ function FlagGuess() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://restcountries.com/v3.1/all?fields=name,flags"
+          "https://restcountries.com/v3.1/all?fields=name,flags,translations"
         );
         const countries = response.data;
-        countries.sort((a: Country, b: Country) =>
-          a.name.common.localeCompare(b.name.common)
+        countries.sort(
+          (
+            a: { translations: { swe: { common: string } } },
+            b: { translations: { swe: { common: string } } }
+          ) =>
+            a.translations.swe.common.localeCompare(
+              b.translations.swe.common,
+              "sv",
+              { sensitivity: "case" }
+            )
         );
         setCountries(countries);
         setData(countries);
@@ -80,7 +93,7 @@ function FlagGuess() {
       setCorrectPicks((prev) => prev + 1);
     } else {
       setIncorrectPicks((prev) => prev + 1);
-      alert(`Incorrect! The correct answer is ${randomCountry?.name.common}`);
+      alert(`Fel! Rätt svar är ${randomCountry?.translations.swe.common}`);
     }
     getRandomCountry();
   };
@@ -92,8 +105,8 @@ function FlagGuess() {
 
   return (
     <div>
-      <h1>Guess the Flag</h1>
-      <p>Pick the correct country/ region for each flag.</p>
+      <h1>Flaggquiz</h1>
+      <p>Välj rätt land/ region för flaggan</p>
       {randomCountry && (
         <div>
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
@@ -104,10 +117,10 @@ function FlagGuess() {
                   {choices.slice(0, 2).map((choice) => (
                     <Button
                       variant="contained"
-                      key={choice.name.common}
+                      key={choice.translations.swe.common}
                       onClick={() => handleChoice(choice)}
                     >
-                      {choice.name.common}
+                      {choice.translations.swe.common}
                     </Button>
                   ))}
                 </Stack>
@@ -115,23 +128,22 @@ function FlagGuess() {
                   {choices.slice(2).map((choice) => (
                     <Button
                       variant="contained"
-                      key={choice.name.common}
+                      key={choice.translations.swe.common}
                       onClick={() => handleChoice(choice)}
                     >
-                      {choice.name.common}
+                      {choice.translations.swe.common}
                     </Button>
                   ))}
                 </Stack>
               </Stack>
             </Stack>
-            {/* <Alert severity="error">Incorrect! {}</Alert> */}
           </div>
           <div>
-            <p>Correct Picks: {correctPicks}</p>
-            <p>Incorrect Picks: {incorrectPicks}</p>
+            <p>Rätta svar: {correctPicks}</p>
+            <p>Felaktga svar: {incorrectPicks}</p>
           </div>
           <Button variant="contained" onClick={() => resetPicks()}>
-            Reset
+            Återställ
           </Button>
         </div>
       )}

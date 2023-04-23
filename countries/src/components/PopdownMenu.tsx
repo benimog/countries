@@ -39,17 +39,17 @@ const PopdownMenu = () => {
         >
           <MenuItem onClick={handleMenuClose}>
             <Link href="/" color="inherit">
-              Home
+              Hem
             </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
             <Link href="/countries" color="inherit">
-              List of Countries
+              Länder
             </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
             <Link href="/flags" color="inherit">
-              Guess The Flag
+              Flaggquiz
             </Link>
           </MenuItem>
         </Menu>
