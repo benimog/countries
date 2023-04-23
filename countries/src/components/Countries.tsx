@@ -72,24 +72,25 @@ const Countries: React.FC = () => {
           <TableHead>
             <TableRow>
               <TableCell align="center" variant="head">
-                Land/ region
+                <h2>Land/ region</h2> 
               </TableCell>
               <TableCell align="center" variant="head">
-                Flagga
+                <h2>Flagga</h2>
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data ? (
               data.map((item: Country) => (
-                <TableRow key={item.translations.swe.common}>
-                  <TableCell component="th" scope="row">
+                <TableRow key={item.translations.swe.common} >
+                  <TableCell component="th" scope="row" sx={{ maxWidth:"20vw"}} align="right" >
                     {item.translations.swe.common}
                   </TableCell>
-                  <TableCell>
+                  <TableCell align="left">
                     <img
                       src={item.flags.png}
                       alt={item.translations.swe.common}
+                      style={{ minWidth: "50%", maxWidth: "100%"}}
                     />
                   </TableCell>
                 </TableRow>
