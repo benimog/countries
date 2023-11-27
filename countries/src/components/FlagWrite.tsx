@@ -2,8 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
-import { Autocomplete } from "@mui/material";
+import { Autocomplete, createFilterOptions  } from "@mui/material";
 import { Paper } from "@mui/material";
+import { CopyOptions } from "fs";
 
 interface Country {
   flags: {
@@ -31,6 +32,11 @@ function FlagWrite() {
   const [correctPicks, setCorrectPicks] = useState<number>(0);
   const [incorrectPicks, setIncorrectPicks] = useState<number>(0);
   const autocompleteRef = useRef<typeof Autocomplete | null>(null);
+
+    const filterOptions = createFilterOptions({
+        matchFrom: "start",
+        stringify: (option: Country) => option.translations.swe.common,
+    });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,7 +92,6 @@ function FlagWrite() {
   };
 
   const resetPicks = () => {
-    console.log(countries);
     setCorrectPicks(0);
     setIncorrectPicks(0);
   };
@@ -103,6 +108,7 @@ function FlagWrite() {
             disablePortal
             id="country-combo-box"
             options={countries}
+            filterOptions={filterOptions}
             getOptionLabel={(option) => option.translations.swe.common}
             renderOption={(props, option) => (
               <li {...props}>{option.translations.swe.common}</li>
