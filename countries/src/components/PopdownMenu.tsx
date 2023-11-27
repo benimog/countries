@@ -49,7 +49,12 @@ const PopdownMenu = () => {
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
             <Link href="/flags" color="inherit">
-              Flaggquiz
+              Flaggquiz - med 4 val
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/write" color="inherit">
+              Flaggquiz - Skriv själv
             </Link>
           </MenuItem>
         </Menu>

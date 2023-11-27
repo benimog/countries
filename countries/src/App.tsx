@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PopdownMenu from "./components/PopdownMenu";
 import Countries from "./components/Countries";
 import FlagGuess from "./components/FlagGuess";
+import FlagWrite from "./components/FlagWrite";
 import Home from "./components/Home";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" Component={Home} />
             <Route path="/countries" Component={Countries} />
             <Route path="/flags" Component={FlagGuess} />
+            <Route path="/write" Component={FlagWrite}/>
           </Routes>
         </Router>
       </div>
