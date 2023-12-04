@@ -6,6 +6,7 @@ import Countries from "./components/Countries";
 import FlagGuess from "./components/FlagGuess";
 import FlagWrite from "./components/FlagWrite";
 import Home from "./components/Home";
+import About from "./components/About";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/countries" Component={Countries} />
             <Route path="/flags" Component={FlagGuess} />
             <Route path="/write" Component={FlagWrite}/>
+            <Route path="/about" Component={About}/>
           </Routes>
         </Router>
       </div>

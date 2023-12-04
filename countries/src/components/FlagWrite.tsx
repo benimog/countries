@@ -41,7 +41,7 @@ function FlagWrite() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://restcountries.com/v3.1/all?fields=name,flags,translations"
+          "https://restcountries.com/v3.1/independent?status=true&fields=name,flags,translations"
         );
         const countries = response.data;
         countries.sort(
@@ -101,7 +101,7 @@ function FlagWrite() {
   return (
     <div>
       <h1>Flaggquiz</h1>
-      <p>Välj rätt land/ region för flaggan</p>
+      <p>Välj rätt land för flaggan</p>
       {randomCountry && (
         <div>
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
