@@ -39,17 +39,22 @@ const PopdownMenu = () => {
         >
           <MenuItem onClick={handleMenuClose}>
             <Link href="/" color="inherit">
-              Hem
+              Flaggquiz
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link href="/write" color="inherit">
+              Flaggquiz (skrivläge)
             </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
             <Link href="/countries" color="inherit">
               Länder & regioner
             </Link>
-          </MenuItem>
+          </MenuItem> 
           <MenuItem onClick={handleMenuClose}>
-            <Link href="/flags" color="inherit">
-              Flaggquiz
+            <Link href="/about" color="inherit">
+              Om flaggquiz
             </Link>
           </MenuItem>
         </Menu>
