@@ -2,9 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
-import { Autocomplete, createFilterOptions  } from "@mui/material";
-import { Paper } from "@mui/material";
-import { CopyOptions } from "fs";
+import { Autocomplete, createFilterOptions } from "@mui/material";
+import { Paper } from "@mui/material"; 
 
 interface Country {
   flags: {
@@ -28,7 +27,7 @@ function FlagWrite() {
   const [data, setData] = useState<Country[]>([]);
   const [countries, setCountries] = useState<Country[]>([]);
   const [randomCountry, setRandomCountry] = useState<Country | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<Country | String>("");
   const [correctPicks, setCorrectPicks] = useState<number>(0);
   const [incorrectPicks, setIncorrectPicks] = useState<number>(0);
   const autocompleteRef = useRef<typeof Autocomplete | null>(null);
@@ -87,8 +86,11 @@ function FlagWrite() {
       alert(`Fel! Rätt svar är ${randomCountry?.translations.swe.common}`);
     }
 
-    setSelectedCountry(null);
+    setSelectedCountry("");
     getRandomCountry();
+    if (autocompleteRef.current) {
+      (autocompleteRef.current as any).getElementsByTagName("input")[0].focus();
+    } 
   };
 
   const resetPicks = () => {
@@ -105,7 +107,7 @@ function FlagWrite() {
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
           <Autocomplete
             ref={autocompleteRef}
-            disablePortal
+            disablePortal={true}
             id="country-combo-box"
             options={countries}
             filterOptions={filterOptions}
@@ -114,14 +116,17 @@ function FlagWrite() {
               <li {...props}>{option.translations.swe.common}</li>
             )}
             renderInput={(params) => (
-              <TextField {...params} label="Land/region" />
-            )}
+              <TextField 
+                {...params}
+                label="Land/region" 
+              />
+            )} 
             PaperComponent={({ children }) => (
-              <Paper style={{ maxHeight: 200, overflow: "hidden" }}>
+              <Paper style={{ maxHeight: 200, overflow: "hidden", backgroundColor: "#282c34", color: "white" }}>
                 {children}
               </Paper>
             )}
-            onChange={(event, value) => value ? setSelectedCountry(value) : setSelectedCountry(null) } 
+            onChange={(event, value) => value ? setSelectedCountry(value) : setSelectedCountry("")} 
           />
           <div>
             <Button variant="contained" onClick={() => handleChoice()}>
