@@ -118,7 +118,10 @@ function FlagWrite() {
             renderInput={(params) => (
               <TextField 
                 {...params}
-                label="Land/region" 
+                label="Land"
+                InputLabelProps={{
+                  style: { color: "#fff"}
+                }} 
               />
             )} 
             PaperComponent={({ children }) => (
