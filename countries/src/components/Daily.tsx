@@ -35,6 +35,7 @@ function Daily() {
   const autocompleteRef = useRef<typeof Autocomplete | null>(null);
   const [dailyCountries, setDailyCountries] = useState<any[]>([]);
   const [countryIndex, setCountryIndex] = useState<number>(0);
+  const numberOfCountries = 10;
 
   const filterOptions = createFilterOptions({
     matchFrom: "start",
@@ -101,6 +102,13 @@ function Daily() {
 
     setSelectedCountry("");
     setCountryIndex((prevIndex) => prevIndex + 1);
+    if (countryIndex === numberOfCountries - 1) {
+      console.log(correctPicks, incorrectPicks);
+      setCountryIndex(0);
+      resetPicks();
+      getDailyCountries();
+      alert("Väl spelat! \n\n Öppna konsolen för att se ditt resultat.");
+    }
   };
 
   useEffect(() => {
@@ -119,7 +127,10 @@ function Daily() {
   };
 
   const getDailyCountries = () => {
-    const date = new Date();
+    const date = new Date(
+      new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Stockholm" })
+    );
+
     const seed = `${date.getFullYear()}-${
       date.getMonth() + 1
     }-${date.getDate()}`;
@@ -132,8 +143,6 @@ function Daily() {
     ) => {
       const shuffledArray = [...array];
 
-      console.log("shuffle");
-
       for (let i = shuffledArray.length - 1; i > 0; i--) {
         const j = Math.floor(rng() * (i + 1));
         [shuffledArray[i], shuffledArray[j]] = [
@@ -144,10 +153,11 @@ function Daily() {
 
       return shuffledArray.slice(0, count);
     };
-
-    const selectedCounitrues = getRandomObjects(seed, countries, 10);
-
-    console.log(selectedCounitrues);
+    const selectedCounitrues = getRandomObjects(
+      seed,
+      countries,
+      numberOfCountries
+    );
 
     setDailyCountries(selectedCounitrues);
   };
@@ -173,10 +183,13 @@ function Daily() {
       <h1>Flaggquiz</h1>
       <h2>{getCurrentDate()}</h2>
       <p>Välj rätt land för flaggan</p>
-      {/* {randomCountry && ( */}
+      <p>
+        Land {countryIndex + 1} av {numberOfCountries}
+      </p>
       <div>
         <img src={randomCountry?.flags.png} alt={randomCountry?.flags.alt} />
         <Autocomplete
+          style={{ marginTop: "1rem" }}
           ref={autocompleteRef}
           disablePortal={true}
           id="country-combo-box"
@@ -219,7 +232,6 @@ function Daily() {
           <p>Felaktga svar: {incorrectPicks}</p>
         </div>
       </div>
-      {/* )} */}
     </div>
   );
 }
