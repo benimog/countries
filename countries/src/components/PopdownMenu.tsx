@@ -38,28 +38,44 @@ const PopdownMenu = () => {
           onClose={handleMenuClose}
         >
           <MenuItem onClick={handleMenuClose}>
-            <Link href="/" color="inherit">
-              Flaggquiz
-            </Link>
-          </MenuItem>
-           <MenuItem onClick={handleMenuClose}>
-            <Link href="/daily" color="inherit">
-             Daglig 
+            <Link href="/" color="inherit" style={{ textDecoration: "none" }}>
+              🏁 Flaggquiz
             </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Link href="/write" color="inherit">
-              Flaggquiz (skrivläge)
+            <Link
+              href="/daily"
+              color="inherit"
+              style={{ textDecoration: "none" }}
+            >
+              📆 Daglig
             </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Link href="/countries" color="inherit">
-              Länder & regioner
+            <Link
+              href="/write"
+              color="inherit"
+              style={{ textDecoration: "none" }}
+            >
+              ✍ Skrivläge
             </Link>
-          </MenuItem> 
+          </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Link href="/about" color="inherit">
-              Om flaggquiz
+            <Link
+              href="/countries"
+              color="inherit"
+              style={{ textDecoration: "none" }}
+            >
+              🌍 Länder & regioner
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link
+              href="/about"
+              color="inherit"
+              style={{ textDecoration: "none" }}
+            >
+              🧾 Om flaggquiz
             </Link>
           </MenuItem>
         </Menu>
