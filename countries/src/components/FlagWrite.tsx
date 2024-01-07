@@ -106,6 +106,7 @@ function FlagWrite() {
         <div>
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
           <Autocomplete
+            style={{ marginTop: "1rem" }}
             ref={autocompleteRef}
             disablePortal={true}
             id="country-combo-box"
