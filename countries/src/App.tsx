@@ -8,6 +8,7 @@ import FlagWrite from "./components/FlagWrite";
 import Home from "./components/Home";
 import About from "./components/About";
 import Daily from "./components/Daily";
+import DailyResult from "./components/DailyResult";
 
 function App() {
   return (
@@ -21,14 +22,14 @@ function App() {
             <Route path="/" Component={Home} />
             <Route path="/countries" Component={Countries} />
             <Route path="/flags" Component={FlagGuess} />
-            <Route path="/write" Component={FlagWrite}/>
-            <Route path="/about" Component={About}/>
-            <Route path="/daily" Component={Daily} /> 
+            <Route path="/write" Component={FlagWrite} />
+            <Route path="/about" Component={About} />
+            <Route path="/daily" Component={Daily} />
+            <Route path="/dailyresult" Component={DailyResult} />
           </Routes>
         </Router>
       </div>
-      <div className="bottom-container">
-      </div>
+      <div className="bottom-container"></div>
     </div>
   );
 }
