@@ -7,6 +7,7 @@ import FlagGuess from "./components/FlagGuess";
 import FlagWrite from "./components/FlagWrite";
 import Home from "./components/Home";
 import About from "./components/About";
+import Daily from "./components/Daily";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/flags" Component={FlagGuess} />
             <Route path="/write" Component={FlagWrite}/>
             <Route path="/about" Component={About}/>
+            <Route path="/daily" Component={Daily} /> 
           </Routes>
         </Router>
       </div>

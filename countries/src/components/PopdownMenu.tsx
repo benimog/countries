@@ -42,6 +42,11 @@ const PopdownMenu = () => {
               Flaggquiz
             </Link>
           </MenuItem>
+           <MenuItem onClick={handleMenuClose}>
+            <Link href="/daily" color="inherit">
+             Daglig 
+            </Link>
+          </MenuItem>
           <MenuItem onClick={handleMenuClose}>
             <Link href="/write" color="inherit">
               Flaggquiz (skrivläge)
