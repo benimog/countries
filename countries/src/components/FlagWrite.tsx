@@ -3,7 +3,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { Autocomplete, createFilterOptions } from "@mui/material";
-import { Paper } from "@mui/material"; 
+import { Paper } from "@mui/material";
 
 interface Country {
   flags: {
@@ -32,10 +32,10 @@ function FlagWrite() {
   const [incorrectPicks, setIncorrectPicks] = useState<number>(0);
   const autocompleteRef = useRef<typeof Autocomplete | null>(null);
 
-    const filterOptions = createFilterOptions({
-        matchFrom: "start",
-        stringify: (option: Country) => option.translations.swe.common,
-    });
+  const filterOptions = createFilterOptions({
+    matchFrom: "start",
+    stringify: (option: Country) => option.translations.swe.common,
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,7 +90,7 @@ function FlagWrite() {
     getRandomCountry();
     if (autocompleteRef.current) {
       (autocompleteRef.current as any).getElementsByTagName("input")[0].focus();
-    } 
+    }
   };
 
   const resetPicks = () => {
@@ -106,7 +106,7 @@ function FlagWrite() {
         <div>
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
           <Autocomplete
-            style={{ marginTop: "1rem" }}
+            style={{ marginTop: "1rem", marginBottom: "1rem" }}
             ref={autocompleteRef}
             disablePortal={true}
             id="country-combo-box"
@@ -117,20 +117,29 @@ function FlagWrite() {
               <li {...props}>{option.translations.swe.common}</li>
             )}
             renderInput={(params) => (
-              <TextField 
+              <TextField
                 {...params}
                 label="Land"
                 InputLabelProps={{
-                  style: { color: "#fff"}
-                }} 
+                  style: { color: "#fff" },
+                }}
               />
-            )} 
+            )}
             PaperComponent={({ children }) => (
-              <Paper style={{ maxHeight: 200, overflow: "hidden", backgroundColor: "#282c34", color: "white" }}>
+              <Paper
+                style={{
+                  maxHeight: 200,
+                  overflow: "hidden",
+                  backgroundColor: "#282c34",
+                  color: "white",
+                }}
+              >
                 {children}
               </Paper>
             )}
-            onChange={(event, value) => value ? setSelectedCountry(value) : setSelectedCountry("")} 
+            onChange={(event, value) =>
+              value ? setSelectedCountry(value) : setSelectedCountry("")
+            }
           />
           <div>
             <Button variant="contained" onClick={() => handleChoice()}>

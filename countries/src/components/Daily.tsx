@@ -102,8 +102,9 @@ function Daily() {
 
     setSelectedCountry("");
     setCountryIndex((prevIndex) => prevIndex + 1);
+    console.log(correctPicks, incorrectPicks);
     if (countryIndex === numberOfCountries - 1) {
-      console.log(correctPicks, incorrectPicks);
+      console.log(`Du fick ${correctPicks} rätt och ${incorrectPicks} fel.`);
       setCountryIndex(0);
       resetPicks();
       getDailyCountries();
@@ -189,7 +190,7 @@ function Daily() {
       <div>
         <img src={randomCountry?.flags.png} alt={randomCountry?.flags.alt} />
         <Autocomplete
-          style={{ marginTop: "1rem" }}
+          style={{ marginTop: "1rem", marginBottom: "1rem" }}
           ref={autocompleteRef}
           disablePortal={true}
           id="country-combo-box"
