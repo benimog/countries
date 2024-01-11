@@ -5,7 +5,6 @@ import { TextField } from "@mui/material";
 import { Autocomplete, createFilterOptions } from "@mui/material";
 import { Paper } from "@mui/material";
 import seedrandom from "seedrandom";
-import { setCommentRange } from "typescript";
 
 interface Country {
   flags: {
@@ -191,7 +190,7 @@ function Daily() {
       <h2>{getCurrentDate()}</h2>
       <p>Välj rätt land för flaggan</p>
       <p>
-        Land {countryIndex + 1} av {numberOfCountries}
+        Flagga {countryIndex + 1} av {numberOfCountries}
       </p>
       <div>
         <img src={randomCountry?.flags.png} alt={randomCountry?.flags.alt} />
@@ -212,6 +211,11 @@ function Daily() {
               label="Land"
               InputLabelProps={{
                 style: { color: "#fff" },
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && selectedCountry) {
+                  handleChoice();
+                }
               }}
             />
           )}

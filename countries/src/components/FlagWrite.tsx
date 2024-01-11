@@ -123,6 +123,11 @@ function FlagWrite() {
                 InputLabelProps={{
                   style: { color: "#fff" },
                 }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && selectedCountry) {
+                    handleChoice();
+                  }
+                }}
               />
             )}
             PaperComponent={({ children }) => (
