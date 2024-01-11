@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
@@ -89,6 +89,14 @@ function Daily() {
     }
   };
 
+  const callAlert = useCallback(() => {
+    alert(
+      `Väl spelat! \n\n Du fick ${
+        correctPicks + 1
+      } rätt och ${incorrectPicks} fel.`
+    );
+  }, [correctPicks, incorrectPicks]);
+
   const handleChoice = () => {
     if (
       typeof selectedCountry !== "string" &&
@@ -102,13 +110,11 @@ function Daily() {
 
     setSelectedCountry("");
     setCountryIndex((prevIndex) => prevIndex + 1);
-    console.log(correctPicks, incorrectPicks);
     if (countryIndex === numberOfCountries - 1) {
-      console.log(`Du fick ${correctPicks} rätt och ${incorrectPicks} fel.`);
       setCountryIndex(0);
       resetPicks();
       getDailyCountries();
-      alert("Väl spelat! \n\n Öppna konsolen för att se ditt resultat.");
+      callAlert();
     }
   };
 
