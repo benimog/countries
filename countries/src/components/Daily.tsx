@@ -89,12 +89,23 @@ function Daily() {
   };
 
   const callAlert = useCallback(() => {
+    const correctPicksAddition =
+      typeof selectedCountry !== "string" &&
+      selectedCountry?.name.common === randomCountry?.name.common
+        ? 1
+        : 0;
+    const incorrectPicksAddition =
+      typeof selectedCountry !== "string" &&
+      selectedCountry?.name.common !== randomCountry?.name.common
+        ? 1
+        : 0;
+
     alert(
       `Väl spelat! \n\n Du fick ${
-        correctPicks + 1
-      } rätt och ${incorrectPicks} fel.`
+        correctPicks + correctPicksAddition
+      } rätt och ${incorrectPicks + incorrectPicksAddition} fel.`
     );
-  }, [correctPicks, incorrectPicks]);
+  }, [correctPicks, incorrectPicks, selectedCountry, randomCountry]);
 
   const handleChoice = () => {
     if (
