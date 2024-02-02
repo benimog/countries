@@ -5,7 +5,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Link,
+  Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -37,46 +37,20 @@ const PopdownMenu = () => {
           open={Boolean(anchorEl)}
           onClose={handleMenuClose}
         >
-          <MenuItem onClick={handleMenuClose}>
-            <Link href="/" color="inherit" style={{ textDecoration: "none" }}>
-              🏁 Flaggquiz
-            </Link>
+          <MenuItem component={"a"} href={"/"} onClick={handleMenuClose}>
+            <Typography textAlign="center">{"🏁 Flaggquiz"}</Typography>
           </MenuItem>
-          <MenuItem onClick={handleMenuClose}>
-            <Link
-              href="/daily"
-              color="inherit"
-              style={{ textDecoration: "none" }}
-            >
-              📆 Daglig
-            </Link>
+          <MenuItem component={"a"} href={"/daily"} onClick={handleMenuClose}>
+            <Typography textAlign="center">{"📆 Daglig"}</Typography>
           </MenuItem>
-          <MenuItem onClick={handleMenuClose}>
-            <Link
-              href="/write"
-              color="inherit"
-              style={{ textDecoration: "none" }}
-            >
-              ✍ Skrivläge
-            </Link>
+          <MenuItem component={"a"} href={"/write"} onClick={handleMenuClose}>
+            <Typography textAlign="center">{"✍ Skrivläge"}</Typography>
           </MenuItem>
-          <MenuItem onClick={handleMenuClose}>
-            <Link
-              href="/countries"
-              color="inherit"
-              style={{ textDecoration: "none" }}
-            >
-              🌍 Länder & regioner
-            </Link>
+          <MenuItem component={"a"} href={"/countries"} onClick={handleMenuClose}>
+            <Typography textAlign="center">{"🌍 Länder & regioner"}</Typography>
           </MenuItem>
-          <MenuItem onClick={handleMenuClose}>
-            <Link
-              href="/about"
-              color="inherit"
-              style={{ textDecoration: "none" }}
-            >
-              🧾 Om flaggquiz
-            </Link>
+          <MenuItem component={"a"} href={"/about"} onClick={handleMenuClose}>
+            <Typography textAlign="center">{"🧾 Om flaggquiz"}</Typography>
           </MenuItem>
         </Menu>
       </Toolbar>
