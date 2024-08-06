@@ -62,6 +62,30 @@ function Home() {
     }
   }, [data]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      let keyIndex = parseInt(event.key);
+      if (keyIndex === 7) {
+        keyIndex = 0;
+      } else if (keyIndex === 4) {
+        keyIndex = 1;
+      } else if (keyIndex === 8) {
+        keyIndex = 2;
+      } else if (keyIndex === 5) {
+        keyIndex = 3;
+      }
+      if (keyIndex >= 0 && keyIndex < choices.length) {
+        handleChoice(choices[keyIndex]);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [choices]);
+
   const getRandomCountry = () => {
     if (countries.length > 0) {
       const randomIndex = Math.floor(Math.random() * countries.length);
@@ -112,7 +136,12 @@ function Home() {
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
           <div>
             <Stack spacing={2} sx={{ marginTop: "1rem" }}>
-              <Stack spacing={2} direction="row" justifyContent="center">
+              <Stack
+                spacing={2}
+                direction="row"
+                justifyContent="center"
+                id="choiceStack"
+              >
                 <Stack spacing={2} direction="column">
                   {choices.slice(0, 2).map((choice) => (
                     <Button
