@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   AppBar,
   Toolbar,
@@ -11,6 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const PopdownMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -20,6 +21,22 @@ const PopdownMenu = () => {
     setAnchorEl(null);
   };
 
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.ctrlKey && event.key === "m") {
+      setAnchorEl((prevAnchorEl) =>
+        prevAnchorEl ? null : menuButtonRef.current
+      );
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -28,8 +45,10 @@ const PopdownMenu = () => {
           color="inherit"
           aria-label="menu"
           onClick={handleMenuOpen}
+          ref={menuButtonRef}
         >
           <MenuIcon />
+          <p>Meny</p>
         </IconButton>
         <Menu
           id="menu"
@@ -46,7 +65,11 @@ const PopdownMenu = () => {
           <MenuItem component={"a"} href={"/write"} onClick={handleMenuClose}>
             <Typography textAlign="center">{"✍ Skrivläge"}</Typography>
           </MenuItem>
-          <MenuItem component={"a"} href={"/countries"} onClick={handleMenuClose}>
+          <MenuItem
+            component={"a"}
+            href={"/countries"}
+            onClick={handleMenuClose}
+          >
             <Typography textAlign="center">{"🌍 Länder & regioner"}</Typography>
           </MenuItem>
           <MenuItem component={"a"} href={"/about"} onClick={handleMenuClose}>

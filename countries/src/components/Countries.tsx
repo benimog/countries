@@ -97,7 +97,7 @@ const Countries: React.FC = () => {
         placeholder="Sök..."
         type="search"
         onChange={(e) => requestSearch(e.target.value)}
-        sx={{ paddingTop: "5px" }}
+        sx={{ paddingTop: "2rem" }}
         fullWidth
       />
       <TableContainer component={Paper}>
