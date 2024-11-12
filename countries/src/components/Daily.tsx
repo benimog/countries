@@ -197,7 +197,6 @@ function Daily() {
 
   return (
     <div>
-      <h1>Flaggquiz</h1>
       <h2>{getCurrentDate()}</h2>
       <p>Välj rätt land för flaggan</p>
       <p>

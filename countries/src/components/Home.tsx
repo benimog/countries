@@ -129,7 +129,6 @@ function Home() {
 
   return (
     <div>
-      <h1>Flaggquiz</h1>
       <p>Välj rätt land för flaggan</p>
       {randomCountry && (
         <div>

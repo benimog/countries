@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   AppBar,
+  Box,
   Toolbar,
   IconButton,
   Menu,
@@ -40,15 +41,19 @@ const PopdownMenu = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <div style={{ flexGrow: 1 }}></div>
-
-        <IconButton
-          edge="start"
+	<Box flexGrow={1} display="flex" justifyContent="center">
+	  <Typography variant="h4" component="div">
+	    Flaggquiz.se
+	  </Typography>
+	</Box>
+	<IconButton
+          edge="end"
           color="inherit"
           aria-label="menu"
           onClick={handleMenuOpen}
           ref={menuButtonRef}
-        >
+	  sx={{ ml: "auto" }}
+	>
           <MenuIcon />
           <p>Meny</p>
         </IconButton>

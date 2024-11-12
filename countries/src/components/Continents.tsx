@@ -21,9 +21,10 @@ interface Country {
   };
 }
 
-function FlagGuess() {
+function Continents() {
   const [data, setData] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
+  const [selectedRegion, setSelectedRegion] = useState<any>("europe");
   const [randomCountry, setRandomCountry] = useState<any | null>(null);
   const [choices, setChoices] = useState<any[]>([]);
   const [correctPicks, setCorrectPicks] = useState<number>(0);
@@ -32,9 +33,15 @@ function FlagGuess() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://restcountries.com/v3.1/all?fields=name,flags,translations"
+        let response = await axios.get(
+          `https://restcountries.com/v3.1/region/${selectedRegion}?fields=name,flags,translations,independent`
         );
+
+        // Only independent countries
+        response.data = response.data.filter(
+          (e: { independent: boolean }) => e.independent === true
+        );
+
         const countries = response.data;
         countries.sort(
           (
@@ -105,13 +112,19 @@ function FlagGuess() {
 
   return (
     <div>
-      <p>Välj rätt land/ region för flaggan</p>
+      <h1>Flaggquiz</h1>
+
       {randomCountry && (
         <div>
           <img src={randomCountry.flags.png} alt={randomCountry.flags.alt} />
           <div>
             <Stack spacing={2} sx={{ marginTop: "1rem" }}>
-              <Stack spacing={2} direction="row" justifyContent="center">
+              <Stack
+                spacing={2}
+                direction="row"
+                justifyContent="center"
+                id="choiceStack"
+              >
                 <Stack spacing={2} direction="column">
                   {choices.slice(0, 2).map((choice) => (
                     <Button
@@ -150,4 +163,4 @@ function FlagGuess() {
   );
 }
 
-export default FlagGuess;
+export default Continents;
