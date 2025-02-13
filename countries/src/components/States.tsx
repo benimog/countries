@@ -40,7 +40,7 @@ const States: React.FC = () => {
         setCurrentState(shuffledStates[nextIndex]);
         setCurrentAttempts(0);
       } else {
-        alert(`Quiz complete! Your score: ${score + 1}/${statesList.length}`);
+        alert(`Väl spelat! Du klarade ${score + 1}/${statesList.length} stater!`);
       }
     } else {
       setCurrentAttempts(currentAttempts + 1);
