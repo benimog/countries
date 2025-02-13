@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from "react";
-
-// import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-
-import * as ReactSimpleMaps from "react-simple-maps";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-
 import usMap from "../us-states.json"; // Ensure you have a GeoJSON file
 import { Feature } from "geojson";
-
 
 interface CustomFeature extends Feature {
   rsmKey: string;
 }
-
-console.log(ReactSimpleMaps); // Check the console in your browser's developer tools
-
-//const { ComposableMap, Geographies, Geography } = ReactMap;
-// const { ComposableMap, Geographies, Geography } = ReactSimpleMaps;
 
 const statesList = [
   "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
@@ -57,22 +46,22 @@ const States: React.FC = () => {
       <h1>Select: {currentState}</h1>
       <h2>Score: {score}</h2>
       <ComposableMap projection="geoAlbersUsa">
-       <Geographies geography={usMap}>
-  {({ geographies }: { geographies: CustomFeature[] }) =>
-    geographies.map((geo) => (
-      <Geography
-        key={geo.rsmKey}
-        geography={geo}
-        onClick={() => handleStateClick(geo?.properties?.name)}
-        style={{
-          default: { fill: "#D6D6DA", stroke: "#FFF" },
-          hover: { fill: "#F53", cursor: "pointer" },
-          pressed: { fill: "#E42" },
-        }}
-      />
-    ))
-  }
-</Geographies>
+        <Geographies geography={usMap}>
+          {({ geographies }: { geographies: CustomFeature[] }) =>
+            geographies.map((geo) => (
+              <Geography
+                key={geo.rsmKey}
+                geography={geo}
+                onClick={() => handleStateClick(geo?.properties?.name)}
+                style={{
+                  default: { fill: "#D6D6DA", stroke: "#FFF" },
+                  hover: { fill: "#F53", cursor: "pointer" },
+                  pressed: { fill: "#E42" },
+                }}
+              />
+            ))
+          }
+        </Geographies>
       </ComposableMap>
     </div>
   );

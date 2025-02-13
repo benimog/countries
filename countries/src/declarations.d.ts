@@ -4,6 +4,7 @@ declare module "*.json" {
 }
 
 declare module "react-simple-maps" {
-  const content: any;
-  export = content;
+  export const ComposableMap: React.ComponentType<any>;
+  export const Geographies: React.ComponentType<any>;
+  export const Geography: React.ComponentType<any>;
 }
