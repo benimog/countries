@@ -25,3 +25,16 @@ code {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
+
+.states-container {
+  width: 50%;
+  height: auto;
+  position: relative;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .states-container {
+    width: 95%;
+  }
+}

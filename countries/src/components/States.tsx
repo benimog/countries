@@ -63,7 +63,7 @@ const States: React.FC = () => {
   };
 
   return (
-    <div style={{ width: "50%", height: "auto", position: "relative" }}>
+    <div className="states-container">
       <h1>{currentState}</h1>
       {tempStateName && (
         <div
