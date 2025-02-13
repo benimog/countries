@@ -5,6 +5,9 @@ import { Feature } from "geojson";
 
 interface CustomFeature extends Feature {
   rsmKey: string;
+  properties: {
+    NAME: string;
+  };
 }
 
 const statesList = [
@@ -20,6 +23,9 @@ const States: React.FC = () => {
   const [shuffledStates, setShuffledStates] = useState<string[]>([]);
   const [currentState, setCurrentState] = useState<string | null>(null);
   const [score, setScore] = useState<number>(0);
+  const [guessedStates, setGuessedStates] = useState<Set<string>>(new Set());
+  const [attempts, setAttempts] = useState<{ [key: string]: number }>({});
+  const [currentAttempts, setCurrentAttempts] = useState<number>(0);
 
   useEffect(() => {
     const shuffled = [...statesList].sort(() => Math.random() - 0.5);
@@ -30,36 +36,56 @@ const States: React.FC = () => {
   const handleStateClick = (stateName: string) => {
     if (stateName === currentState) {
       setScore(score + 1);
+      setGuessedStates(new Set(guessedStates).add(stateName));
+      setAttempts((prevAttempts) => ({
+        ...prevAttempts,
+        [stateName]: currentAttempts + 1,
+      }));
       const nextIndex = shuffledStates.indexOf(currentState!) + 1;
       if (nextIndex < shuffledStates.length) {
         setCurrentState(shuffledStates[nextIndex]);
+        setCurrentAttempts(0);
       } else {
         alert(`Quiz complete! Your score: ${score + 1}/${statesList.length}`);
       }
     } else {
-      alert("Try again!");
+      setCurrentAttempts(currentAttempts + 1);
+      alert(stateName);
     }
   };
 
+  const getFillColor = (stateName: string) => {
+    const attemptCount = attempts[stateName] || 0;
+    if (guessedStates.has(stateName)) {
+      if (attemptCount === 1) return "#00FF00"; // Green
+      if (attemptCount === 2) return "#8ec961"; // Light green
+      if (attemptCount === 3) return "#fff200"; // Yellow
+      return "#FF0000"; // Red for 4 or more attempts
+    }
+    return "#D6D6DA"; // Default color
+  };
+
   return (
-    <div>
-      <h1>Select: {currentState}</h1>
-      <h2>Score: {score}</h2>
+    <div style={{ width: "50%", height: "auto" }}>
+      <h1>{currentState}</h1>
       <ComposableMap projection="geoAlbersUsa">
         <Geographies geography={usMap}>
           {({ geographies }: { geographies: CustomFeature[] }) =>
-            geographies.map((geo) => (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                onClick={() => handleStateClick(geo?.properties?.name)}
-                style={{
-                  default: { fill: "#D6D6DA", stroke: "#FFF" },
-                  hover: { fill: "#F53", cursor: "pointer" },
-                  pressed: { fill: "#E42" },
-                }}
-              />
-            ))
+            geographies.map((geo) => {
+              const fillColor = getFillColor(geo.properties.NAME);
+              return (
+                <Geography
+                  key={geo.rsmKey}
+                  geography={geo}
+                  onClick={() => handleStateClick(geo.properties?.NAME || "Unknown")}
+                  style={{
+                    default: { fill: fillColor, stroke: "#FFF" },
+                    hover: { fill: "#F53", cursor: "pointer" },
+                    pressed: { fill: "#E42" },
+                  }}
+                />
+              );
+            })
           }
         </Geographies>
       </ComposableMap>
