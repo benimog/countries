@@ -29,7 +29,7 @@ function App() {
             <Route path="/daily" Component={Daily} />
             <Route path="/dailyresult" Component={DailyResult} />
             <Route path="/continents" Component={Continents} />
-	    <Route path="/states" Component={States} />
+	          <Route path="/states" Component={States} />
           </Routes>
         </Router>
       </div>

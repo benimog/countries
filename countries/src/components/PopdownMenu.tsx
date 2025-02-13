@@ -72,6 +72,9 @@ const PopdownMenu = () => {
           <MenuItem component={"a"} href={"/write"} onClick={handleMenuClose}>
             <Typography textAlign="center">{"✍ Skrivläge"}</Typography>
           </MenuItem>
+          <MenuItem component={"a"} href={"/states"} onClick={handleMenuClose}>
+            <Typography textAlign="center">{"🇺🇸 Amerikanska stater"}</Typography>
+          </MenuItem>
           <MenuItem
             component={"a"}
             href={"/countries"}
