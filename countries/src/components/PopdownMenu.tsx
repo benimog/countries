@@ -41,19 +41,19 @@ const PopdownMenu = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-	<Box flexGrow={1} display="flex" justifyContent="center">
-	  <Typography variant="h4" component="div">
-	    Flaggquiz.se
-	  </Typography>
-	</Box>
-	<IconButton
+        <Box flexGrow={1} display="flex" justifyContent="center">
+          <Typography variant="h4" component="div">
+            Flaggquiz.se
+          </Typography>
+        </Box>
+        <IconButton
           edge="end"
           color="inherit"
           aria-label="menu"
           onClick={handleMenuOpen}
           ref={menuButtonRef}
-	  sx={{ ml: "auto" }}
-	>
+          sx={{ ml: "auto" }}
+        >
           <MenuIcon />
           <p>Meny</p>
         </IconButton>
@@ -64,26 +64,26 @@ const PopdownMenu = () => {
           onClose={handleMenuClose}
         >
           <MenuItem component={"a"} href={"/"} onClick={handleMenuClose}>
-            <Typography textAlign="center">{"🏁 Flaggquiz"}</Typography>
+            <Typography textAlign="center" className="emoji">{"🏁 Flaggquiz"}</Typography>
           </MenuItem>
           <MenuItem component={"a"} href={"/daily"} onClick={handleMenuClose}>
-            <Typography textAlign="center">{"📆 Daglig"}</Typography>
+            <Typography textAlign="center" className="emoji">{"📆 Daglig"}</Typography>
           </MenuItem>
           <MenuItem component={"a"} href={"/write"} onClick={handleMenuClose}>
-            <Typography textAlign="center">{"✍ Skrivläge"}</Typography>
+            <Typography textAlign="center" className="emoji">{"✍ Skrivläge"}</Typography>
           </MenuItem>
           <MenuItem component={"a"} href={"/states"} onClick={handleMenuClose}>
-            <Typography textAlign="center">{"🇺🇸 Amerikanska stater"}</Typography>
+            <Typography textAlign="center" className="emoji">{"🇺🇸 Amerikanska stater"}</Typography>
           </MenuItem>
           <MenuItem
             component={"a"}
             href={"/countries"}
             onClick={handleMenuClose}
           >
-            <Typography textAlign="center">{"🌍 Länder & regioner"}</Typography>
+            <Typography textAlign="center" className="emoji">{"🌍 Länder & regioner"}</Typography>
           </MenuItem>
           <MenuItem component={"a"} href={"/about"} onClick={handleMenuClose}>
-            <Typography textAlign="center">{"🧾 Om flaggquiz"}</Typography>
+            <Typography textAlign="center" className="emoji">{"🧾 Om flaggquiz"}</Typography>
           </MenuItem>
         </Menu>
       </Toolbar>
