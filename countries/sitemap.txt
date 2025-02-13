@@ -3,3 +3,4 @@ https://flaggquiz.se/countries
 https://flaggquiz.se/flags
 https://flaggquiz.se/daily
 https://flaggquiz.se/about
+https://flaggquiz.se/states
