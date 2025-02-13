@@ -26,6 +26,7 @@ const States: React.FC = () => {
   const [guessedStates, setGuessedStates] = useState<Set<string>>(new Set());
   const [attempts, setAttempts] = useState<{ [key: string]: number }>({});
   const [currentAttempts, setCurrentAttempts] = useState<number>(0);
+  const [tempStateName, setTempStateName] = useState<string | null>(null);
 
   useEffect(() => {
     const shuffled = [...statesList].sort(() => Math.random() - 0.5);
@@ -50,7 +51,10 @@ const States: React.FC = () => {
       }
     } else {
       setCurrentAttempts(currentAttempts + 1);
-      alert(stateName);
+      setTempStateName(stateName);
+      setTimeout(() => {
+        setTempStateName(null);
+      }, 3000); // Display the state name for 2 seconds
     }
   };
 
@@ -66,8 +70,25 @@ const States: React.FC = () => {
   };
 
   return (
-    <div style={{ width: "50%", height: "auto" }}>
+    <div style={{ width: "50%", height: "auto", position: "relative" }}>
       <h1>{currentState}</h1>
+      {tempStateName && (
+        <div
+          style={{
+            position: "absolute",
+            top: "20 %",
+            left: "50%",
+            transform: "translateX(-50%)",
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            color: "white",
+            padding: "10px",
+            borderRadius: "5px",
+            zIndex: 1000,
+          }}
+        >
+          {tempStateName}
+        </div>
+      )}
       <ComposableMap projection="geoAlbersUsa">
         <Geographies geography={usMap}>
           {({ geographies }: { geographies: CustomFeature[] }) =>
