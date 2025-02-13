@@ -93,9 +93,9 @@ const States: React.FC = () => {
                   geography={geo}
                   onClick={() => handleStateClick(geo.properties?.NAME || "Unknown")}
                   style={{
-                    default: { fill: fillColor, stroke: "#FFF" },
-                    hover: { fill: "#F53", cursor: "pointer" },
-                    pressed: { fill: "#E42" },
+                    default: { fill: fillColor, stroke: "#FFF", outline: "none" },
+                    hover: { fill: "#F53", cursor: "pointer", outline: "none" },
+                    pressed: { fill: "#E42", outline: "none" },
                   }}
                 />
               );
