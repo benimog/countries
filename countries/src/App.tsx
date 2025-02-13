@@ -10,6 +10,7 @@ import About from "./components/About";
 import Daily from "./components/Daily";
 import DailyResult from "./components/DailyResult";
 import Continents from "./components/Continents";
+import States from "./components/States";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/daily" Component={Daily} />
             <Route path="/dailyresult" Component={DailyResult} />
             <Route path="/continents" Component={Continents} />
+	          <Route path="/states" Component={States} />
           </Routes>
         </Router>
       </div>
